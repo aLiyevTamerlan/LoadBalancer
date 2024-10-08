@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "loadbalancer"
+version = "0.1.0"
+description = ""
+authors = ["aLiyevTamerlan <tamerlan-aliyev-2021@mail.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.115.0"
+uvicorn = "^0.31.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

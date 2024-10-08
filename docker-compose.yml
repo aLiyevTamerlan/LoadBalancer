@@ -1,0 +1,38 @@
+version: '3.9'
+
+services:
+  backend1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend1
+    ports:
+      - "8001:8000"  
+    volumes:
+      - .:/app 
+    environment:
+      - POETRY_VIRTUALENVS_IN_PROJECT=true
+      - app_name=backend1
+    command: poetry run uvicorn main:app --host 0.0.0.0 --port 8000
+
+  backend2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend2
+    ports:
+      - "8002:8000"  
+    volumes:
+      - .:/app 
+    environment:
+      - POETRY_VIRTUALENVS_IN_PROJECT=true
+      - app_name=backend2
+    command: poetry run uvicorn main:app --host 0.0.0.0 --port 8000
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - 8000:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
